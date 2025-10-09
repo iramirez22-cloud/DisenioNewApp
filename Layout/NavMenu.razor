@@ -1,0 +1,65 @@
+﻿<div class="top-row px-4 navbar navbar-dark">
+    <div class="container-fluid">
+        <!-- El texto 'Diseño' lo mantengo, como un título o logo -->
+        <a class="navbar-brand" href="">Diseño</a>
+
+        <!-- Este es el menú horizontal simple con el enlace Home -->
+        <nav class="d-flex">
+            <NavLink class="nav-link px-3" href="" Match="NavLinkMatch.All">
+                Home
+            </NavLink>
+        </nav>
+    </div>
+</div>
+
+@* Hemos eliminado toda la lógica de barra lateral, el checkbox y el nav-scrollable *@
+
+<style>
+    /* VARIABLES DE COLOR */
+    :root {
+        --navbar-bg-dark: #2c3e50; /* Base oscura */
+        --accent-orange: #e67e22; /* Naranja fuerte */
+        --accent-hover: #d35400; /* Naranja oscuro para hover */
+    }
+
+    /* Estilos del menú superior */
+    .top-row.navbar {
+        background-color: var(--navbar-bg-dark) !important;
+        /* Asegura que ocupe todo el ancho */
+        width: 100%;
+        border-bottom: 2px solid var(--accent-orange) !important;
+        height: 64px; /* Altura estándar de una barra superior */
+    }
+
+    /* Color del texto 'Diseño' */
+    .top-row .navbar-brand {
+        color: var(--accent-orange) !important;
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+
+    /* Estilos de los enlaces de navegación */
+    .nav-link {
+        color: #ecf0f1 !important;
+        padding: 8px 15px;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+        text-decoration: none;
+    }
+
+        .nav-link:hover {
+            background-color: var(--accent-hover) !important;
+            color: white !important;
+        }
+
+        /* Color de la sección activa (cuando estás en la página Home) */
+        .nav-link.active {
+            background-color: var(--accent-orange) !important;
+            color: white !important;
+        }
+
+    /* Aseguramos que la navegación lateral no aparezca */
+    .nav-scrollable {
+        display: none !important;
+    }
+</style>

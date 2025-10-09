@@ -1,0 +1,27 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+    @*
+        NOTA: Hemos eliminado la barra lateral (<div class="sidebar">) 
+        para usar un menú fijo superior.
+    *@
+
+    <main class="main-content">
+        @* La clase "main-content" se encarga de aplicar el padding superior para 
+           dejar espacio al menú fijo que se encuentra en Home.razor.
+        *@
+        <div class="top-row px-4">
+            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">x</a>
+</div>

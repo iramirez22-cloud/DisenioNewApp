@@ -1,0 +1,606 @@
+﻿@page "/"
+
+@* Título de la página Blazor *@
+<PageTitle>Dashboard Principal</PageTitle>
+
+@* Top Menu: Ahora usa enlaces de ANCLAJE para saltar a las secciones con CSS simple *@
+<header class="menu-bar">
+    <div class="menu-container">
+        <div class="logo">
+            Mi Aplicación Blazor
+        </div>
+        <nav class="nav-links">
+            @* Los enlaces ahora apuntan a los IDs de las secciones. *@
+            <a href="#inicio" class="nav-link">Inicio</a>
+            <a href="#graficas" class="nav-link">Gráficas</a>
+            <a href="#tarjetas" class="nav-link">Tarjetas</a> @* <-- NUEVO ENLACE *@
+            <a href="#cv" class="nav-link">CV/Perfil</a>
+            <a href="#datos" class="nav-link">Datos</a>
+        </nav>
+    </div>
+</header>
+
+@* Contenido Principal - Todas las secciones están visibles, el menú hace el salto con CSS simple *@
+<main class="main-content">
+    <div class="content-container">
+
+        @* 1. INICIO - Con ID para que el enlace pueda saltar aquí *@
+        <section id="inicio" class="section-card hero-section">
+            <h1 class="hero-title">
+                ¡Hola! Soy IRVING RAMIREZ
+            </h1>
+            <p class="hero-subtitle">
+                Bienvenido a mi Dashboard de Blazor. Usa el menú de arriba para empezar.
+            </p>
+
+            @* Botón de Gráficas removido - Ahora la navegación se realiza solo desde el menú superior. *@
+            @* <a href="#graficas" class="btn btn-success">
+                Ver mis Gráficas de Rendimiento →
+            </a> *@
+        </section>
+
+        @* 2. Gráfica (Simulada) - Con ID para que el enlace pueda saltar aquí *@
+        <section id="graficas" class="section-card">
+            <h2 class="section-title">Gráfica de Ventas Mensuales (Simulación)</h2>
+
+            @* CAMBIO AQUI: Contenedor para la Gráfica de Barras (simulada con CSS) *@
+            <div class="chart-container">
+                <div class="chart-bar-wrap">
+                    <div class="chart-bar" style="height: 75%; background-color: #2ecc71;">75k</div>
+                    <div class="chart-label">Ene</div>
+                </div>
+                <div class="chart-bar-wrap">
+                    <div class="chart-bar" style="height: 90%; background-color: #3498db;">90k</div>
+                    <div class="chart-label">Feb</div>
+                </div>
+                <div class="chart-bar-wrap">
+                    <div class="chart-bar" style="height: 60%; background-color: #e67e22;">60k</div>
+                    <div class="chart-label">Mar</div>
+                </div>
+                <div class="chart-bar-wrap">
+                    <div class="chart-bar" style="height: 85%; background-color: #9b59b6;">85k</div>
+                    <div class="chart-label">Abr</div>
+                </div>
+                <div class="chart-bar-wrap">
+                    <div class="chart-bar" style="height: 95%; background-color: #e74c3c;">95k</div>
+                    <div class="chart-label">May</div>
+                </div>
+                <div class="chart-bar-wrap">
+                    <div class="chart-bar" style="height: 70%; background-color: #f1c40f;">70k</div>
+                    <div class="chart-label">Jun</div>
+                </div>
+            </div>
+            @* FIN CAMBIO AQUI *@
+
+        </section>
+
+        @* 3. TARJETAS (NUEVA SECCIÓN) - Con ID para que el enlace pueda saltar aquí *@
+        <section id="tarjetas" class="section-card">
+            <h2 class="section-title">Métricas Clave (Tarjetas $2 \times 2$)</h2>
+            <div class="grid-container">
+                @* Primera Tarjeta *@
+                <div class="info-card">
+                    <div class="card-icon icon-orange"></div>
+                    <div class="card-details">
+                        <p class="card-metric">1.2k</p>
+                        <p class="card-label">Usuarios Activos</p>
+                    </div>
+                </div>
+
+                @* Segunda Tarjeta *@
+                <div class="info-card">
+                    <div class="card-icon icon-green"></div>
+                    <div class="card-details">
+                        <p class="card-metric">98%</p>
+                        <p class="card-label">Tasa de Éxito</p>
+                    </div>
+                </div>
+
+                @* Tercera Tarjeta *@
+                <div class="info-card">
+                    <div class="card-icon icon-blue"></div>
+                    <div class="card-details">
+                        <p class="card-metric">$45k</p>
+                        <p class="card-label">Ingresos Mensuales</p>
+                    </div>
+                </div>
+
+                @* Cuarta Tarjeta *@
+                <div class="info-card">
+                    <div class="card-icon icon-red"></div>
+                    <div class="card-details">
+                        <p class="card-metric">25</p>
+                        <p class="card-label">Proyectos Pendientes</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        @* 4. CV / Perfil (Formato Estilizado) - Con ID para que el enlace pueda saltar aquí *@
+        <section id="cv" class="section-card">
+            <h2 class="section-title">Sección de CV / Perfil</h2>
+
+            <div class="profile-header">
+                <img src="images/WEBIMG.jpeg" alt="Foto de Perfil" class="profile-img">
+                <h3 class="profile-name">Irving Ramirez</h3>
+                <p class="profile-role">Desarrollador Blazor & Analista de Datos</p>
+            </div>
+
+            <div class="cv-layout">
+                <div class="cv-contact-box">
+                    <h3 class="cv-title">Contacto</h3>
+                    <p class="cv-detail">Email: ejemplo@correo.com</p>
+                    <p class="cv-detail">Teléfono: (123) 456-7890</p>
+                </div>
+                <div class="cv-experience">
+                    <h3 class="cv-title">Experiencia Clave</h3>
+                    <ul class="cv-list">
+                        <li>Desarrollo de componentes Blazor (3 años)</li>
+                        <li>Gestión de bases de datos SQL Server</li>
+                        <li>Implementación de CSS simple</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        @* 5. Tabla de Datos - Con ID para que el enlace pueda saltar aquí *@
+        <section id="datos" class="section-card overflow-table">
+            <h2 class="section-title">Tabla de Registros Recientes</h2>
+
+            <table class="data-table">
+                <thead class="table-header">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Estado</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+
+                    @* Usamos el bucle Blazor @foreach para renderizar las filas *@
+                    @foreach (var registro in Registros)
+                    {
+                        <tr class="table-row">
+                            <td>@registro.Id</td>
+                            <td>@registro.Nombre</td>
+                            <td>
+                                <span class="@GetStatusBadgeClass(registro.Estado)">
+                                    @registro.Estado
+                                </span>
+                            </td>
+                            <td>@registro.Fecha.ToShortDateString()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </section>
+
+    </div>
+</main>
+
+@code {
+    // Definición del modelo de datos para los registros de la tabla
+    private class Registro
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; } = string.Empty;
+        public string Estado { get; set; } = string.Empty;
+        public DateTime Fecha { get; set; }
+    }
+
+    // Lista de registros simulados
+    private List<Registro> Registros = new List<Registro>
+    {
+        new Registro { Id = 101, Nombre = "nik P.", Estado = "Activo", Fecha = new DateTime(2023, 10, 1) },
+        new Registro { Id = 102, Nombre = "Juan M.", Estado = "Pendiente", Fecha = new DateTime(2023, 9, 28) },
+        new Registro { Id = 103, Nombre = "Carla S.", Estado = "Inactivo", Fecha = new DateTime(2023, 9, 25) },
+        new Registro { Id = 104, Nombre = "Pedro R.", Estado = "Activo", Fecha = new DateTime(2023, 10, 5) }
+    };
+
+    // Función auxiliar para obtener las clases CSS según el estado (para el badge)
+    private string GetStatusBadgeClass(string status)
+    {
+        return status switch
+        {
+            "Activo" => "badge badge-success",
+            "Pendiente" => "badge badge-warning",
+            "Inactivo" => "badge badge-danger",
+            _ => "badge badge-secondary",
+        };
+    }
+}
+
+<style>
+    /* VARIABLES DE COLOR */
+    :root {
+        --primary-color: #e67e22; /* Naranja para acentos */
+        --primary-dark: #d35400; /* Naranja oscuro para hover */
+        --secondary-color: #34495e; /* Gris oscuro para el menú */
+        --text-color: #2c3e50;
+        --background-light: #f4f4f4; /* Fondo que queremos que domine */
+        --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        --card-padding: 20px;
+    }
+
+    /* === Globales y Layouts === */
+    /* IMPORTANTE: Eliminamos el fondo morado que venía de los estilos por defecto */
+    body, html {
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+        background-color: var(--background-light) !important; /* Aseguramos el color claro */
+        background: var(--background-light) !important; /* Otra forma de asegurar */
+        font-family: Arial, sans-serif;
+        color: var(--text-color);
+    }
+
+    /* Si el contenedor principal (Layout de Blazor) tiene el degradado, también lo limpiamos */
+    #app, .page {
+        background-color: var(--background-light) !important;
+        background: var(--background-light) !important;
+    }
+
+    /* Contenedor principal para centrar el contenido y aplicar margen superior */
+    .main-content {
+        padding-top: 80px; /* Espacio para el menú fijo */
+        padding-bottom: 50px;
+        min-height: 100vh;
+    }
+
+    .content-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* === Menú Superior === */
+
+    .menu-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--secondary-color);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+    }
+
+    .menu-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; /* Asegura que el contenido esté alineado verticalmente */
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 15px 20px;
+    }
+
+    .logo {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .nav-links {
+        /* Aseguramos que los enlaces se muestren en línea horizontal sin envolverse */
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+        .nav-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            padding: 8px 15px;
+            margin-left: 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+            /* IMPORTANTE: Hacer el enlace un bloque para que el padding funcione */
+            display: block;
+            white-space: nowrap; /* Evita que el texto del enlace se rompa en varias líneas */
+        }
+
+            .nav-links a:hover {
+                background-color: var(--primary-dark);
+            }
+
+            .nav-links a:active {
+                background-color: var(--primary-color);
+                color: white;
+            }
+
+    /* === Secciones y Tarjetas === */
+
+    .section-card {
+        background-color: white;
+        padding: var(--card-padding);
+        margin-top: 30px;
+        border-radius: 8px;
+        box-shadow: var(--card-shadow);
+        border-left: 5px solid var(--primary-color);
+    }
+
+    .section-title {
+        color: var(--primary-color);
+        border-bottom: 2px solid var(--background-light);
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    /* Sección de Inicio (Hero) */
+    .hero-title {
+        color: var(--primary-dark);
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 25px;
+        color: var(--text-color);
+    }
+
+    /* Botones */
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s, transform 0.1s;
+    }
+
+    .btn-success {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+        .btn-success:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+    /* === Estilos para la Nueva Sección de Gráficas (Barra) === */
+    .chart-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-end; /* Alinear barras en la base */
+        height: 250px;
+        padding: 10px 0;
+        border-left: 1px solid #ccc; /* Eje Y */
+        border-bottom: 1px solid #ccc; /* Eje X */
+        margin-top: 15px;
+    }
+
+    .chart-bar-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 12%; /* Espacio para cada barra */
+        height: 100%;
+        position: relative;
+        margin: 0 5px;
+    }
+
+    .chart-bar {
+        width: 80%;
+        border-radius: 5px 5px 0 0;
+        transition: height 0.5s ease-out; /* Animación de barras */
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        color: white;
+        font-weight: bold;
+        font-size: 0.8rem;
+        padding-top: 5px;
+        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .chart-label {
+        margin-top: 5px;
+        font-size: 0.9rem;
+        color: var(--text-color);
+    }
+
+
+    /* === Estilos para la Nueva Sección de Tarjetas (Grid 2x2) === */
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .info-card {
+        display: flex;
+        align-items: center;
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 6px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        border: 1px solid #ddd;
+    }
+
+    .card-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        color: white;
+    }
+
+    .icon-orange {
+        background-color: #e67e22;
+    }
+
+    .icon-green {
+        background-color: #2ecc71;
+    }
+
+    .icon-blue {
+        background-color: #3498db;
+    }
+
+    .icon-red {
+        background-color: #e74c3c;
+    }
+
+    .card-metric {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: var(--text-color);
+        margin: 0;
+    }
+
+    .card-label {
+        font-size: 0.9rem;
+        color: #7f8c8d;
+        margin: 0;
+    }
+
+    /* === Estilos de CV y Tabla (Manteniendo la estética) === */
+
+    .placeholder-box {
+        border: 2px dashed #e67e22;
+        padding: 50px;
+        text-align: center;
+        color: #e67e22;
+        border-radius: 8px;
+    }
+
+    /* Estilos para el nuevo encabezado de perfil */
+    .profile-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 20px;
+        padding: 10px 0;
+        border-bottom: 1px dashed var(--background-light);
+    }
+
+    .profile-img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%; /* Esto hace que la imagen sea redonda */
+        object-fit: cover;
+        margin-bottom: 10px;
+        border: 3px solid var(--primary-color);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .profile-name {
+        font-size: 1.5rem;
+        color: var(--primary-dark);
+        margin: 5px 0 0;
+    }
+
+    .profile-role {
+        font-size: 0.9rem;
+        color: #7f8c8d;
+        margin: 0;
+    }
+
+
+    .cv-layout {
+        display: flex;
+        gap: 30px;
+        padding-top: 10px;
+    }
+
+    .cv-contact-box, .cv-experience {
+        flex: 1;
+        padding: 15px;
+        border: 1px solid var(--background-light);
+        border-radius: 6px;
+    }
+
+    .cv-title {
+        color: var(--primary-dark);
+        border-bottom: 1px solid var(--background-light);
+        padding-bottom: 5px;
+        margin-top: 0;
+    }
+
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .table-header th {
+        background-color: var(--secondary-color);
+        color: white;
+        padding: 12px 15px;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .table-body .table-row:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .table-body td {
+        padding: 10px 15px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* Badges de Estado */
+    .badge {
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 0.8em;
+        font-weight: bold;
+        color: white;
+    }
+
+    .badge-success {
+        background-color: #2ecc71;
+    }
+
+    .badge-warning {
+        background-color: #f1c40f;
+    }
+
+    .badge-danger {
+        background-color: #e74c3c;
+    }
+
+    /* Adaptación a Móviles */
+    @@media (max-width: 768px) {
+        .menu-container {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        /* Ajuste clave para que los enlaces no se rompan y se alineen correctamente */
+        .nav-links {
+            width: 100%; /* Ocupa todo el ancho disponible */
+            justify-content: space-around; /* Distribuye el espacio entre los enlaces */
+        }
+
+            .nav-links a {
+                margin: 5px 0;
+            }
+
+        .cv-layout {
+            flex-direction: column;
+        }
+
+        .grid-container {
+            grid-template-columns: 1fr;
+        }
+
+        .data-table, .overflow-table {
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+    }
+</style>
