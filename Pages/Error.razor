@@ -1,38 +1,18 @@
-﻿@page "/error"
+﻿@page "/Error"
 
 <PageTitle>Error</PageTitle>
 
+<!--
+    Este componente es la página que se muestra cuando el framework
+    de Blazor encuentra una excepción no manejada (solo funciona en Development).
+    Hemos quitado toda referencia a HttpContext, que no existe en WebAssembly.
+-->
+
 <h1 class="text-danger">Error</h1>
-<p class="text-danger">Se ha producido un error al procesar la solicitud.</p>
+<p class="text-danger">
+    Ha ocurrido un error no controlado en la aplicación.
+</p>
 
-<div class="alert alert-secondary mt-4" role="alert">
-    <h5>Solicitud ID:</h5>
-    <code class="text-break">@RequestId</code>
-</div>
-
-@if (ShowRequestId)
-{
-    <p>
-        <strong>Ambiente de Desarrollo:</strong> El error solo se mostrará en entornos de desarrollo.
-    </p>
-}
-
-<a href="" class="btn btn-primary mt-3">Volver al Inicio</a>
-
-@code {
-    [Parameter]
-    public string? RequestId { get; set; }
-
-    public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
-
-    protected override void OnInitialized()
-    {
-        // Obtener el ID de la solicitud desde la URL para entornos de WebAssembly
-        var uri = new Uri(NavigationManager.Uri);
-        var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
-        RequestId = query["id"] ?? "";
-    }
-
-    [Inject]
-    public NavigationManager NavigationManager { get; set; } = default!;
-}
+<p>
+    Lo sentimos, el servicio no pudo cargar la página.
+</p>
