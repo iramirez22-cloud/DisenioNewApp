@@ -1,0 +1,38 @@
+name: Blazor Deploy a GitHub Pages
+
+on:
+  push:
+    branches: [ master, main ]
+  workflow_dispatch:
+  
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    # 1. Configurar la versión de .NET (Usando 8.0.x como base)
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x' # Asegúrate que esta versión sea la que usas (7.0.x o 8.0.x)
+
+    # 2. Restaurar y Publicar
+    - name: Restore and Publish Project
+      # El -p:GitHubPagesId=DisenioNewApp es el método más limpio de decirle a Blazor su base
+      run: |
+        dotnet restore
+        dotnet publish "DisenioNewApp.csproj" -c Release -o output/wwwroot --nologo -p:GitHubPagesId=/DisenioNewApp/
+      
+    # 3. Desplegar los archivos estáticos generados a la rama gh-pages
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: output/wwwroot

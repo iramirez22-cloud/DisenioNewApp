@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include=".github\workflows\blazor.yml" />
+    <None Include=".github\workflows\deploy.yml" />
   </ItemGroup>
 
 </Project>
