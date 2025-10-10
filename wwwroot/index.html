@@ -1,35 +1,19 @@
-<!DOCTYPE html>
-<html lang="es">
+@using DisenioNewApp.Pages
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>DisenioNewApp</title>
-
-    <!-- 🌟 ESTA ES LA ETIQUETA QUE DEBES MODIFICAR 🌟 -->
-    <base href="/DisenioNewApp/" />
-
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/app.css" rel="stylesheet" />
-    <link href="DisenioNewApp.styles.css" rel="stylesheet" />
-</head>
-
-<body>
-    <!-- Este es el contenedor donde se carga el App.razor -->
-    <div id="app">
-        <svg class="loading-progress">
-            <circle r="40%" cx="50%" cy="50%" />
-            <circle r="40%" cx="50%" cy="50%" />
-        </svg>
-        <div class="loading-progress-text"></div>
-    </div>
-
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
-    </div>
-    <script src="_framework/blazor.webassembly.js"></script>
-</body>
-
-</html>
+<!-- El contenido de App.razor solo debe definir la estructura de enrutamiento -->
+<Router AppAssembly="@typeof(App).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <PageTitle>Página no encontrada</PageTitle>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <div class="p-5 text-center">
+                <h2>Ouch!</h2>
+                <p>Lo siento, no hay nada en esta dirección.</p>
+                <a href="/" class="btn btn-primary mt-3">Volver al Inicio</a>
+            </div>
+        </LayoutView>
+    </NotFound>
+</Router>
