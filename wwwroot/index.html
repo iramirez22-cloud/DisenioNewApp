@@ -1,61 +1,19 @@
-<!DOCTYPE html>
-<html lang="es">
+@using DisenioNewApp.Pages
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Dashboard Irving Ramirez</title>
-
-    <!--
-        *** CORRECCIÓN CLAVE PARA GITHUB PAGES ***
-        La ruta base debe apuntar al nombre de tu repositorio.
-        En este caso: /DisenioNewApp/
-    -->
-    <base href="/DisenioNewApp/" />
-
-    <!-- Enlaces de Estilo -->
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-
-    <!--
-        Asegúrate de que 'app.css' contenga los estilos personalizados
-        que definimos para el fondo claro y el menú fijo.
-    -->
-    <link href="css/app.css" rel="stylesheet" />
-
-    <!-- Enlace al ícono de tu aplicación (favicon) -->
-    <link rel="icon" type="image/png" href="favicon.png" />
-
-</head>
-
-<body>
-    <!-- Contenedor donde Blazor carga el componente App.razor -->
-    <div id="app">
-        <!-- Puedes poner un simple indicador de carga aquí mientras Blazor inicia -->
-        <div style="
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-            color: #6c757d;
-        ">
-            <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
-                <span class="visually-hidden">Cargando...</span>
+<!-- El contenido de App.razor solo debe definir la estructura de enrutamiento, no el HTML completo -->
+<Router AppAssembly="@typeof(App).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <PageTitle>Página no encontrada</PageTitle>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <div class="p-5 text-center">
+                <h2>Ouch!</h2>
+                <p>Lo siento, no hay nada en esta dirección.</p>
+                <a href="/" class="btn btn-primary mt-3">Volver al Inicio</a>
             </div>
-            <p class="mt-3">Cargando aplicación Blazor...</p>
-        </div>
-    </div>
-
-    <!-- Sección de errores (ya estaba en tu plantilla) -->
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
-    </div>
-
-    <!-- Script de Blazor WebAssembly que inicia toda la aplicación -->
-    <script src="_framework/blazor.webassembly.js"></script>
-</body>
-
-</html>
+        </LayoutView>
+    </NotFound>
+</Router>

@@ -1,12 +1,19 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿@using DisenioNewApp.Pages
+
+<!-- El contenido de App.razor solo debe definir la estructura de enrutamiento, no el HTML completo -->
+<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
     </Found>
     <NotFound>
-        <PageTitle>Not found</PageTitle>
+        <PageTitle>Página no encontrada</PageTitle>
         <LayoutView Layout="@typeof(MainLayout)">
-            <p role="alert">Lo siento, no hay nada en esta dirección.</p>
+            <div class="p-5 text-center">
+                <h2>Ouch!</h2>
+                <p>Lo siento, no hay nada en esta dirección.</p>
+                <a href="/" class="btn btn-primary mt-3">Volver al Inicio</a>
+            </div>
         </LayoutView>
     </NotFound>
 </Router>
