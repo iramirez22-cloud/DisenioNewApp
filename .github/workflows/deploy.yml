@@ -16,23 +16,25 @@ jobs:
       with:
         fetch-depth: 0
 
-    # 1. Configurar la versión de .NET (Usando 8.0.x como base)
+    # 1. Configurar .NET 8.0 (Versión moderna, cámbiala si usas 7.0)
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.0.x' # Asegúrate que esta versión sea la que usas (7.0.x o 8.0.x)
+        dotnet-version: '8.0.x' 
 
-    # 2. Restaurar y Publicar
+    # 2. Restaurar, Publicar y Corregir Base Path
     - name: Restore and Publish Project
-      # El -p:GitHubPagesId=DisenioNewApp es el método más limpio de decirle a Blazor su base
+      # Este comando compila y corrige la ruta base en el index.html
       run: |
         dotnet restore
         dotnet publish "DisenioNewApp.csproj" -c Release -o output/wwwroot --nologo -p:GitHubPagesId=/DisenioNewApp/
       
-    # 3. Desplegar los archivos estáticos generados a la rama gh-pages
+    # 3. Desplegar SOLAMENTE la carpeta compilada (output/wwwroot) a la rama gh-pages
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_branch: gh-pages
-        publish_dir: output/wwwroot
+        publish_dir: output/wwwroot # <--- ESTO ES CRÍTICO: SOLO LA SALIDA
+        # forzar la subida aunque no haya cambios detectados:
+        force_orphan: true 
