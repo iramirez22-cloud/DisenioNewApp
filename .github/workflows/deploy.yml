@@ -16,7 +16,7 @@ jobs:
       with:
         fetch-depth: 0
 
-    # 1. Configurar .NET 8.0 (Versión moderna, cámbiala si usas 7.0)
+    # 1. Configurar .NET 8.0 (Usando 8.0.x por ser la versión moderna)
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v4
       with:
@@ -24,7 +24,7 @@ jobs:
 
     # 2. Restaurar, Publicar y Corregir Base Path
     - name: Restore and Publish Project
-      # Este comando compila y corrige la ruta base en el index.html
+      # Este comando compila, genera la salida en output/wwwroot y corrige la ruta base.
       run: |
         dotnet restore
         dotnet publish "DisenioNewApp.csproj" -c Release -o output/wwwroot --nologo -p:GitHubPagesId=/DisenioNewApp/
@@ -35,6 +35,7 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_branch: gh-pages
-        publish_dir: output/wwwroot # <--- ESTO ES CRÍTICO: SOLO LA SALIDA
-        # forzar la subida aunque no haya cambios detectados:
+        publish_dir: output/wwwroot 
+        # ESTA LÍNEA ES CLAVE: Fuerza a la rama gh-pages a ser huérfana, 
+        # eliminando todo el historial y contenido previo antes de subir los archivos.
         force_orphan: true 
