@@ -2,40 +2,47 @@ name: Blazor Deploy a GitHub Pages
 
 on:
   push:
-    branches: [ master, main ]
-  workflow_dispatch:
-  
-permissions:
-  contents: write
+    branches: [ master ] # Asegúrate de que esta sea tu rama principal (master o main)
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+    
+    # 1. Checkout: Baja el código de la rama master
     - uses: actions/checkout@v4
       with:
         fetch-depth: 0
-
-    # 1. Configurar .NET 8.0 (Usando 8.0.x por ser la versión moderna)
+    
+    # 2. Setup .NET Core SDK: Instala .NET 8
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.0.x' 
+        dotnet-version: '8.0.x'
 
-    # 2. Restaurar, Publicar y Corregir Base Path
+    # 3. Restore and Publish Project: Compila y crea la salida estática
+    # La salida final estará en: /home/runner/work/DisenioNewApp/DisenioNewApp/bin/Release/net8.0/publish/wwwroot/
     - name: Restore and Publish Project
-      # Este comando compila, genera la salida en output/wwwroot y corrige la ruta base.
       run: |
-        dotnet restore
-        dotnet publish "DisenioNewApp.csproj" -c Release -o output/wwwroot --nologo -p:GitHubPagesId=/DisenioNewApp/
-      
-    # 3. Desplegar SOLAMENTE la carpeta compilada (output/wwwroot) a la rama gh-pages
+        dotnet restore DisenioNewApp.csproj
+        dotnet publish DisenioNewApp.csproj -c Release --nologo
+
+    # 4. Ajuste de Base Path: Reemplaza la base href en el index.html de salida
+    # CRÍTICO: Necesita saber el nombre de tu repositorio ('/DisenioNewApp/')
+    - name: Rewrite base tag
+      if: success()
+      uses: SteveSandersonMS/ghpages-spa@v1.1.9
+      with:
+          repo: ${{ github.repository }} # Esto automáticamente detecta iramirez22-cloud/DisenioNewApp
+          
+    # 5. Deploy to GitHub Pages: Sube el contenido de la carpeta 'publish/wwwroot' a gh-pages
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: gh-pages
-        publish_dir: output/wwwroot 
-        # ESTA LÍNEA ES CLAVE: Fuerza a la rama gh-pages a ser huérfana, 
-        # eliminando todo el historial y contenido previo antes de subir los archivos.
-        force_orphan: true 
+        # La carpeta donde se publica Blazor es dentro de la carpeta 'publish'
+        publish_dir: bin/Release/net8.0/publish/wwwroot # <--- RUTA CORRECTA DE BLZOR
+        
+        # Estas opciones aseguran que la rama gh-pages solo tenga los archivos de la app:
+        force_orphan: true
+        keep_files: false
